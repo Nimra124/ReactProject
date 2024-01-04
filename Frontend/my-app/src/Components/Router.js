@@ -44,9 +44,9 @@ const Router = () => {
             <Routes>
 
               <Route path='/' element={<Login />}></Route>
-              <Route path='/home' element={<Home />}></Route>
-              <Route path="/contact" element={<Contact />}></Route>
-              <Route path="/about" element={<AdminAccees><About /></AdminAccees>}></Route>
+              <Route path='/home' element={<Logged><Home /></Logged>}></Route>
+              <Route path="/contact" element={<Logged><Contact /></Logged>}></Route>
+              <Route path="/about" element={<Logged><AdminAccees><About /></AdminAccees></Logged>}></Route>
               <Route path='*' element={<Error />}></Route>
 
             </Routes>
@@ -74,6 +74,14 @@ function AdminAccees({ children }) {
   }
 }
 
+function Logged({ children }) {
 
+  if (accessMode==="user"||accessMode==="admin") {
+    return <>{children}</>
+  }
+  else {
+    return <><Login/></>
+  }
+}
 
 export default Router;
