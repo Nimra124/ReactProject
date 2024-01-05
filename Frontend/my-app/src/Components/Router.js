@@ -8,20 +8,22 @@ import SideBar from './SideBar'
 import Login from './Login'
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
-import { Layout, theme, Space } from 'antd';
+import { Layout } from 'antd';
 import { About } from "./About";
+import { Outlet,Navigate } from "react-router-dom";
 const { Content } = Layout;
+
 
 
 let accessMode = localStorage.getItem("Role");
 
-
+ 
 
 
 const Router = () => {
 
 
-  const select = useSelector(st => st.ACCESS_MODE);
+  const select = useSelector(st => st.accessmode.value);
 
   useEffect(() => {
     console.log(" select : ", select);
@@ -44,10 +46,12 @@ const Router = () => {
             <Routes>
 
               <Route path='/' element={<Login />}></Route>
-              <Route path='/home' element={<Logged><Home /></Logged>}></Route>
-              <Route path="/contact" element={<Logged><Contact /></Logged>}></Route>
-              <Route path="/about" element={<Logged><AdminAccees><About /></AdminAccees></Logged>}></Route>
+              < Route element={<Protected />}>
+              <Route path='/home' element={<Home />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
+              <Route path="/about" element={<AdminAccees><About /></AdminAccees>}></Route>
               <Route path='*' element={<Error />}></Route>
+              </Route>
 
             </Routes>
           </Content>
@@ -74,14 +78,14 @@ function AdminAccees({ children }) {
   }
 }
 
-function Logged({ children }) {
 
-  if (accessMode==="user"||accessMode==="admin") {
-    return <>{children}</>
-  }
-  else {
-    return <><Login/></>
-  }
+const Protected = () => {
+
+  let protect=localStorage.getItem("Role");
+ return (protect)?( <Outlet/> ):( <Navigate to="/"/>)
+
 }
+
+
 
 export default Router;

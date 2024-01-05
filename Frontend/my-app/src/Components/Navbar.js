@@ -1,8 +1,12 @@
 import React from 'react';
 import { FiLogOut } from 'react-icons/fi';
 import { Link,NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { ACCESS_MODE } from '../ReduxToolKit/Slice/AccessModeSlice';
 
 function Navbar() {
+    const dispatch=useDispatch();
+    
     return (
         <div className='container-fluid'>
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -22,7 +26,7 @@ function Navbar() {
                             <NavLink className="nav-link" to={"/contact"}> Contact  </NavLink>
                         </li>
                         <li className="nav-item" >
-                            <Link className="nav-link " onClick={()=>{localStorage.removeItem('Role');}}   to=""> <FiLogOut /> Logout</Link>
+                            <Link className="nav-link " onClick={()=>{localStorage.removeItem('Role'); dispatch(ACCESS_MODE("Logout"));}}   to=""> <FiLogOut /> Logout</Link>
                         </li>
                     </ul>
                 </div>
