@@ -1,11 +1,11 @@
-import { configureStore } from '@reduxjs/toolkit'
-import CounterSlice from './Slice/CounterSlice'
-import AccessModeSlice from './Slice/AccessModeSlice';
+import { configureStore } from "@reduxjs/toolkit";
+import CounterSlice from "./Slice/CounterSlice";
+import AccessModeSlice from "./Slice/AccessModeSlice";
 
-  const store = configureStore({
+const store = configureStore({
   reducer: {
     counter: CounterSlice,
-    accessmode:AccessModeSlice,
+    accessmode: AccessModeSlice,
   },
-})
-export  default store;
+});
+export default store;

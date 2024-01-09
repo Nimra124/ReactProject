@@ -5,7 +5,6 @@ const loginreducer=(state="abc" , action)=>{
     {
        case "ACCESS_MODE": 
          state=action.payload;
-         console.log(" access mode : ============ "+state)
          return state;
 
         default:

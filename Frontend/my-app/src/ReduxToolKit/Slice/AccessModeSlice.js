@@ -1,20 +1,19 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: "abc",
-}
+};
 
 export const AccessModeSlice = createSlice({
-  name: 'accessmode',
+  name: "accessmode",
   initialState,
   reducers: {
     ACCESS_MODE: (state, action) => {
-      state.value = action.payload
-      console.log(" State : ",state.value);
+      state.value = action.payload;
     },
   },
-})
+});
 
-export const {ACCESS_MODE } = AccessModeSlice.actions
+export const { ACCESS_MODE } = AccessModeSlice.actions;
 
-export default AccessModeSlice.reducer
+export default AccessModeSlice.reducer;

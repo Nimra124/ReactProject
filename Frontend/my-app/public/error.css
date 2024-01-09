@@ -1,9 +1,6 @@
-
-
 .error-header {
   background: #fff;
   height: 180px;
-
 }
 
 .error-container {
@@ -36,13 +33,13 @@
 }
 
 .error-container p.description {
-
   color: #6f6e6e !important;
   font-size: 40px;
   margin: 0;
 }
 
-.return-btn, .return-btn:hover {
+.return-btn,
+.return-btn:hover {
   border: 1px solid #4e4d4d;
   padding: 10px 15px;
   margin-top: 70px;
@@ -59,6 +56,6 @@
   font-weight: 300;
 }
 
-a:hover{
-    text-decoration:none;    
+a:hover {
+  text-decoration: none;
 }
