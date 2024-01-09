@@ -5,9 +5,9 @@ import path from 'path';
 
 
 export const  client = new Client({
-    user: 'macbookpro',
-    host: 'localhost',
-    database: 'postgres',
+    user: process.env.CLIENT_USER,
+    host: process.env.CLIENT_HOST,
+    database: process.env.CLIENT_DATABASE,
     password: '',
     port: 5432, // Default PostgreSQL port
   });
