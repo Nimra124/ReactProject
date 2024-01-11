@@ -1,11 +1,11 @@
-import express from 'express'
-import { ValidUser,dummy ,Get_Valid_User} from '../Controllers/LoginController.js';
-import {requireSignIn} from '../middleware/check_token.js'
+const express = require ('express');
+const { ValidUser,dummy ,Get_Valid_User} = require ('../Controllers/LoginController.js');
+const {requireSignIn} = require ('../middleware/check_token.js');
 
 const Router=express.Router();
 
-Router.post('/login',ValidUser);
+Router.post("/login",ValidUser);
 Router.get("/",requireSignIn,dummy);
-Router.post('/getuser',Get_Valid_User)
+Router.post("/getuser",Get_Valid_User)
 
-export default Router; 
+module.exports= Router; 

@@ -1,12 +1,13 @@
-import express from  "express";
-import dotenv from 'dotenv';
-import cors from "cors";
-import databaseConnection from './databaseConnection.js'
-import {creating_connection} from './PostgreConnection.js'
-import LoginRoutes from './Routers/LoginRouter.js'
+const express= require ("express");
+const dotenv= require ('dotenv');
+const cors= require ("cors");
+const databaseConnection= require ('./databaseConnection.js');
+const {creating_connection}= require ('./PostgreConnection.js');
+const LoginRoutes= require ('./Routers/LoginRouter.js');
 
 
 const app=express();
+
 dotenv.config();
 // databaseConnection();
 creating_connection();

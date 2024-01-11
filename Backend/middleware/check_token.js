@@ -1,7 +1,7 @@
-import JWT from 'jsonwebtoken'
+const JWT= require ('jsonwebtoken');
 
 
-export const requireSignIn = async(req,res,next)=>{
+ const requireSignIn = async(req,res,next)=>{
     try {
         const decode = JWT.verify(req.headers.authorization,process.env.JWT_KEY)
         req.user = decode;
@@ -18,5 +18,5 @@ export const requireSignIn = async(req,res,next)=>{
     }
 
 }
-
+module.exports={requireSignIn};
 

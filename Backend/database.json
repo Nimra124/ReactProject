@@ -1,0 +1,16 @@
+{
+  "dev": {
+    "driver": "postgresql",
+  "user": "macbookpro",
+  "password": "1234",
+  "host": "localhost",  
+  "database": "postgres" 
+  },
+  "prod": {
+  "driver": "postgresql",
+  "user": "macbookpro",
+  "password": "1234",
+  "host": "localhost",  
+  "database": "postgres" 
+}
+}

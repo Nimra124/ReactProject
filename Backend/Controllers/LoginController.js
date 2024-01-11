@@ -1,12 +1,10 @@
-import LoginModel from "../Models/LoginModel.js";
-import JWT from 'jsonwebtoken';
-import {  comparePassword } from "../helpers/hashPassword.js";
-import {client} from '../PostgreConnection.js';
-import {creating_connection} from '../PostgreConnection.js';
-import  fs from 'fs';
-import path from 'path';
+const LoginModel = require ("../Models/LoginModel.js");
+const JWT = require ('jsonwebtoken');
+const {  comparePassword } = require ("../helpers/hashPassword.js");
+const {client} = require ('../PostgreConnection.js');
 
-export const ValidUser = async (req, res) => {
+
+ const ValidUser = async (req, res) => {
   console.log(" data from query : ", req.body);
 
   let result = await LoginModel.findOne({
@@ -31,12 +29,12 @@ export const ValidUser = async (req, res) => {
 };
 
 
-export const dummy  = async (req, res) => {
+ const dummy  = async (req, res) => {
     res.send(" Get Access")
   };
   
 
-  export const Get_Valid_User = async (req, res) => {
+  const Get_Valid_User = async (req, res) => {
     console.log(" data from query : ", req.body);
 
     let response ;
@@ -72,5 +70,11 @@ client.query(sqlScript, values, async (err, result) => {
   }
 });
   
+  };
+
+  module.exports = {
+    ValidUser,
+    dummy,
+    Get_Valid_User,
   };
   
