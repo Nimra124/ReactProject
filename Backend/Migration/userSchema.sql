@@ -15,13 +15,13 @@ CREATE TABLE IF NOT EXISTS User_Table (
 ); 
 
 
-ALTER TABLE User_Table
-ADD FOREIGN KEY (Login_ID) REFERENCES Login_Table(Id);
+-- ALTER TABLE User_Table
+-- ADD FOREIGN KEY (Login_ID) REFERENCES Login_Table(Id);
 
 -- Insert into User_Table (First_Name,Last_Name,City,Login_ID) 
 -- VALUES
--- ('HoneyTools','Dev','Karachi',7),
--- ('Nimra','Noor','Lahore',8);
+-- ('HoneyTools','Dev','Karachi',1),
+-- ('Nimra','Noor','Lahore',2);
 
 -- Select First_Name,Last_Name,City,UserName,PassWord,role,User_Id from Login_Table INNER JOIN User_Table on Login_Table.Id = User_Table.Login_ID;
 
@@ -31,7 +31,7 @@ ADD FOREIGN KEY (Login_ID) REFERENCES Login_Table(Id);
 -- VALUES
 --   ('honeytools@gmail.com', '$2b$10$9FMAD.NCMjtV6SRH68oUru8EsawtjQZnaQct4wBserYeLpE4W07TO', 'admin'),
 --   ('nimra@gmail.com', '$2b$10$FW/70zqhoH3FE3YG.n4lJuzz3.vnB7aCjYC/BEDdc2UaFGLSB8H6G', 'user');
---   ('dev@gmail.com', '456', 'user');
+ 
 
 -- delete from Login_Table
 

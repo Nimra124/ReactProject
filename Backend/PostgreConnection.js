@@ -18,17 +18,17 @@ const client = new Client({
   try {
     await client.connect();
     // Read the SQL script file
-    const sqlFilePath = path.join("./", "./Migration/userSchema.sql");
-    const sqlScript = fs.readFileSync(sqlFilePath, "utf-8");
+    // const sqlFilePath = path.join("./", "./Migration/userSchema.sql");
+    // const sqlScript = fs.readFileSync(sqlFilePath, "utf-8");
 
-    // Execute the SQL script
-    client.query(sqlScript, (err, result) => {
-      if (err) {
-        console.error("Error executing SQL script:", err);
-      } else {
-        console.log("SQL Create Table script executed successfully!"); //result[3].rows
-      }
-    });
+    // // Execute the SQL script
+    // client.query(sqlScript, (err, result) => {
+    //   if (err) {
+    //     console.error("Error executing SQL script:", err);
+    //   } else {
+    //     console.log("SQL Create Table script executed successfully!"); //result[3].rows
+    //   }
+    // });
   } catch (err) {
     console.log(" Error in connecting ........ ", err);
   }
