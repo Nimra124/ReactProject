@@ -1,7 +1,8 @@
 const pkg = require ("pg");
 const { Client } = pkg;
-const fs= require ("fs");
-const path = require ("path");
+const fs = require("fs");
+var path = require("path");
+
 
 
 const client = new Client({
@@ -17,7 +18,7 @@ const client = new Client({
  const creating_connection = async () => {
   try {
     await client.connect();
-    // Read the SQL script file
+   //Read the SQL script file
     // const sqlFilePath = path.join("./", "./Migration/userSchema.sql");
     // const sqlScript = fs.readFileSync(sqlFilePath, "utf-8");
 

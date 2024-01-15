@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS User_Table (
   First_Name VARCHAR(255) NOT NULL,
   Last_Name VARCHAR(255) NOT NULL,
   City  VARCHAR(100) NOT NULL,
-  CONSTRAINT FK_PersonOrder FOREIGN KEY (Login_Id)
+  Login_Id int NOT NULL,
+  CONSTRAINT FK_LoginTable FOREIGN KEY (Login_Id)
   REFERENCES Login_Table(Login_Id)
 ); 
 
