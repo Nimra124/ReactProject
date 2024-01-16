@@ -11,6 +11,7 @@ import { useEffect } from "react";
 import { Layout } from "antd";
 import { About } from "./About";
 import { Outlet, Navigate } from "react-router-dom";
+import  SignUp  from "./Signup";
 const { Content } = Layout;
 
 let accessMode = localStorage.getItem("Role");
@@ -27,6 +28,8 @@ const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+
           // Protected routes can be added below this
           <Route element={<Protected />}>
             <Route path="/home" element={<Home />}></Route>

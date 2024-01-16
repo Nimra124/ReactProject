@@ -17,6 +17,24 @@ export const loginapi = async (username, password) => {
   }
 };
 
+// Add User 
+export const adduser = async (name,username,dob, password) => {
+  try {
+    let url = process.env.REACT_APP_HOST_URL + "/signup";
+    console.log(" url : ", url);
+    const response = await axios.post(url, {
+      name : name ,
+      username : username,
+      DOB : dob ,
+      password : password
+    });
+    return response;
+  } catch (error) {
+    console.error("Error:", error);
+    return null;
+  }
+};
+
 // Verifying whether the user possesses authorized access or not.
 export const dummy = async () => {
   try {

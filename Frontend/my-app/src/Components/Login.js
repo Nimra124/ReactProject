@@ -3,7 +3,7 @@ import { Button, Form, Input } from "antd";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ACCESS_MODE } from "../ReduxToolKit/Slice/AccessModeSlice";
 import { loginapi } from "../helpers/API";
@@ -90,6 +90,14 @@ export const Login = () => {
             <Button className="mt-1" htmlType="submit">
               Submit
             </Button>
+          </Form.Item>
+          <Form.Item
+            wrapperCol={{
+              offset: 2,
+              span: 18,
+            }}
+          >
+          Don't have an account?<Link to="/signup" style={{textDecoration: "none" , marginLeft:"5px" }}>Signup </Link> 
           </Form.Item>
         </Form>
       </div>
