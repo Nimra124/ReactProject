@@ -1,12 +1,11 @@
 import React from "react";
 import { FiLogOut } from "react-icons/fi";
+import Auth_Logout from './Auth0_Logout';
 import { Link, NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { ACCESS_MODE } from "../ReduxToolKit/Slice/AccessModeSlice";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
-  const dispatch = useDispatch();
-
+  const { logout } = useAuth0();
   return (
     <div className="container-fluid">
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -45,13 +44,12 @@ function Navbar() {
               <Link
                 className="nav-link "
                 onClick={() => {
-                  localStorage.removeItem("Role");
-                  localStorage.removeItem("Token");
-                  dispatch(ACCESS_MODE("Logout"));
+                  logout()
+                 localStorage.removeItem("AuthToken")
                 }}
-                to="/login"
               >
                 <FiLogOut /> Logout
+                {/* <Auth_Logout/> */}
               </Link>
             </li>
           </ul>

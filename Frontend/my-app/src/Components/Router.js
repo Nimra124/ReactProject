@@ -11,42 +11,45 @@ import { useEffect } from "react";
 import { Layout } from "antd";
 import { About } from "./About";
 import { Outlet, Navigate } from "react-router-dom";
-import  SignUp  from "./Signup";
+import SignUp from "./Signup";
+import Auth0_Login from './Auth0/Auth0_Login'
+import { useAuth0 } from "@auth0/auth0-react";
 const { Content } = Layout;
 
 let accessMode = localStorage.getItem("Role");
 
 const Router = () => {
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const select = useSelector((st) => st.accessmode.value);
 
   useEffect(() => {
     accessMode = localStorage.getItem("Role");
   }, [select]);
 
+
   return (
-    <>
+      <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Login />}></Route>
-          <Route path="/signup" element={<SignUp />}></Route>
-
           // Protected routes can be added below this
           <Route element={<Protected />}>
-            <Route path="/home" element={<Home />}></Route>
+            <Route path="/" element={<Home />}></Route>
             // Admin routes can be added below this
             <Route element={<Admin />}>
               <Route path="/about" element={<About />}></Route>
               <Route path="/contact" element={<Contact />}></Route>
             </Route>
-            <Route path="*" element={<Error />}></Route>
           </Route>
-        </Routes>
+          // Non-Protected routes can be added below this
+          <Route path="/login" element={<Login />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="*" element={<Error />}></Route>
+
+        </Routes> 
       </BrowserRouter>
     </>
   );
 };
-
-
 
 const Protected = () => {
   let protect = localStorage.getItem("Role");
@@ -61,7 +64,7 @@ const Protected = () => {
       </Layout>
     </Layout>
   ) : (
-    <Login />
+    <Navigate to='/login'/>
   );
 };
 

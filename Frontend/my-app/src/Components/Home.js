@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { increment, decrement } from "../ReduxToolKit/Slice/CounterSlice";
 import { dummy } from "../helpers/API";
 import { ACCESS_MODE } from "../ReduxToolKit/Slice/AccessModeSlice";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom"
+
+
 
 const Home = () => {
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
   let select = useSelector((state) => state.counter.value);
@@ -50,7 +53,7 @@ const Home = () => {
             if (res === "Unauthorized Access") {
               localStorage.removeItem("Role");
               dispatch(ACCESS_MODE("Logout"));
-              navigate("/");
+              navigate("/login");
             }
           }}
         >

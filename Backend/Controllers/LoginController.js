@@ -79,52 +79,46 @@ const SignUp = async (req, res) => {
   console.log(" data from query : ", req.body);
 
   let response;
-  let sqlScript =
-  "Select username from User_Table where username= $1";
-let values = [
-  req.body.username
-];
-client.query(sqlScript, values, async (err, result) => {
-  if (err) {
-    console.error("Error executing SQL script:", err);
-  } else {
-    console.log("SQL script executed successfully!");
-    response = await result.rows[0]; 
-console.log(" response : ",response);
-if(!response){
- let hashPassword = await hash.hashPassword(req.body.password);
-console.log(" Hash Password  : ", hashPassword);
+  let sqlScript = "Select username from User_Table where username= $1";
+  let values = [req.body.username];
+  client.query(sqlScript, values, async (err, result) => {
+    if (err) {
+      console.error("Error executing SQL script:", err);
+    } else {
+      console.log("SQL script executed successfully!");
+      response = await result.rows[0];
+      console.log(" response : ", response);
+      if (!response) {
+        let hashPassword = await hash.hashPassword(req.body.password);
+        console.log(" Hash Password  : ", hashPassword);
 
-const sqlScript =
- "Insert into User_Table (name,username,role,DOB,password)  VALUES ($1,$2,$3,$4,$5)";
-const values = [
- req.body.name,
- req.body.username,
-"user",
- req.body.DOB,
- hashPassword,
-];
+        const sqlScript =
+          "Insert into User_Table (name,username,role,DOB,password)  VALUES ($1,$2,$3,$4,$5)";
+        const values = [
+          req.body.name,
+          req.body.username,
+          "user",
+          req.body.DOB,
+          hashPassword,
+        ];
 
-// Execute the SQL script
-client.query(sqlScript, values, async (err, result) => {
- if (err) {
-   console.error("Error executing SQL script:", err);
- } else {
-   console.log("SQL script executed successfully!");
-   res.send({
-     msg : "ADDED USER",
-   });
-
- }
-});
-}
-else{
- res.send({ msg : "USER ALREADY EXITS"})
-}
-  }
-});
-
-  };
+        // Execute the SQL script
+        client.query(sqlScript, values, async (err, result) => {
+          if (err) {
+            console.error("Error executing SQL script:", err);
+          } else {
+            console.log("SQL script executed successfully!");
+            res.send({
+              msg: "ADDED USER",
+            });
+          }
+        });
+      } else {
+        res.send({ msg: "USER ALREADY EXITS" });
+      }
+    }
+  });
+};
 
 function generateUniqueRandomString() {
   return uuidv4();

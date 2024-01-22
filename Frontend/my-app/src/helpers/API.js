@@ -56,3 +56,27 @@ export const dummy = async () => {
     return null;
   }
 };
+
+
+// Verifying whether the user possesses authorized access or not.
+export const Auth0dummy = async () => {
+  try {
+    let url = process.env.REACT_APP_HOST_URL + "/VerifyAuth0Token";
+    let token = localStorage.getItem("AuthToken");
+    console.log("Token : ",token)
+    const response = await axios.get(url, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    console.log(" response   : ", response);
+    return response;
+  } catch (error) {
+    console.error("Error:", error);
+    if (error.request.status === 401) {
+      console.log(" Unauthorized Access");
+      return "Unauthorized Access";
+    }
+    return null;
+  }
+};

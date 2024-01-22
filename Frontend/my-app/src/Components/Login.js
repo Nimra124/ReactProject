@@ -7,6 +7,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { ACCESS_MODE } from "../ReduxToolKit/Slice/AccessModeSlice";
 import { loginapi } from "../helpers/API";
+import AuthLogin from './Auth0/Auth0_Login'
 
 export const Login = () => {
   const dispatch = useDispatch();
@@ -14,8 +15,8 @@ export const Login = () => {
 
   const onFinish = async (values) => {
     const { username, password } = values;
-    // Login api 
-    let response = await loginapi(username, password); 
+    // Login api
+    let response = await loginapi(username, password);
     console.log(" response : ", response);
     if (response.data.match === false) {
       toast(" YOU HAVE ENTERED INVALID CREDENTIALS ");
@@ -23,7 +24,7 @@ export const Login = () => {
       dispatch(ACCESS_MODE(response.data.data.role));
       localStorage.setItem("Role", response.data.data.role);
       localStorage.setItem("Token", response.data.token);
-      navigate("/home");
+      navigate("/");
     }
   };
   const onFinishFailed = (errorInfo) => {
@@ -60,8 +61,8 @@ export const Login = () => {
                 message: "Please input your username!",
               },
               {
-                type: 'email',
-                message: 'Please enter a valid email address!',
+                type: "email",
+                message: "Please enter a valid email address!",
               },
             ]}
           >
@@ -91,13 +92,29 @@ export const Login = () => {
               Submit
             </Button>
           </Form.Item>
+
+          <Form.Item
+            wrapperCol={{
+              offset: 7,
+              span: 20,
+            }}
+          >
+            <AuthLogin/>
+          </Form.Item>
+
           <Form.Item
             wrapperCol={{
               offset: 2,
               span: 18,
             }}
           >
-          Don't have an account?<Link to="/signup" style={{textDecoration: "none" , marginLeft:"5px" }}>Signup </Link> 
+            Don't have an account?
+            <Link
+              to="/signup"
+              style={{ textDecoration: "none", marginLeft: "5px" }}
+            >
+              Signup 
+            </Link>
           </Form.Item>
         </Form>
       </div>
